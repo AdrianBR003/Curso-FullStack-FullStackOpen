@@ -24,9 +24,9 @@ console.log(parts[0]['name'])
   return (
     <div>
         <Header course={course} />
-        <Content parts={parts[0]} /> 
-        <Content parts={parts[1]} />
-        <Content parts={parts[2]}/>
+        {parts.map((part, index)  => ( //El metodo 'map' itera sobre 'parts'
+          <Content key={index} parts={part}/> 
+        ))}
         <Total parts={parts} /> 
     </div>
   )
