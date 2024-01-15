@@ -1,34 +1,31 @@
-import Header from "./Header"
-import Content from "./Content"
-import Total from "./Total"
+import { useState } from 'react'
+
+const Display = ( {counter} ) =>{
+  return(
+    <div>{counter}</div>
+  )
+}
+
+const Button = ( {handleClick, text} ) =>( <button onClick={handleClick}>{text}</button> )
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const parts =[
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7 
-    },
-    {
-      name: 'State of a Component',
-      exercises: 14
-    }
-]
 
-console.log(parts[0]['name'])
+  const [ counter, setCounter ] = useState(0) //useState es una funcion que avanza el estado de la aplicacion
+  console.log('rendering with counter value', counter)
 
-  return (
-    <div>
-        <Header course={course} />
-        {parts.map((part, index)  => ( //El metodo 'map' itera sobre 'parts'
-          <Content key={index} parts={part}/> 
-        ))}
-        <Total parts={parts} /> 
-    </div>
+  const increaseByOne = () => setCounter(counter + 1)
+  console.log('increasing, value before', counter)
+  const decreaseByOne = () => setCounter(counter -1)
+  console.log('decreasing, value before',counter)
+  const setToZero = () => setCounter(0)
+  console.log('resetting to zero, value before', counter)
+
+  return (<>
+    <Display counter={counter} />
+    <Button handleClick={increaseByOne} text={'increase'}/>
+    <Button handleClick={decreaseByOne} text={'decrease'}/> 
+    <Button handleClick={setToZero} text={'Zero'}/> 
+    </>
   )
 }
 
