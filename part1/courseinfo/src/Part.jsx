@@ -1,6 +1,7 @@
-const Part = ({numero, name,exercises}) =>{
-return <>
-    <p>Numero: {numero} -- Nombre: {name} -- Nº Ejercicios: {exercises}</p>
+const Part = (props) =>{
+    console.log("Part " + " "+ props.name +" "+ props.exercises)
+return <>   
+    <p>Nombre: {props.name} -- Nº Ejercicios: {props.exercises}</p>
 </>
 }
 

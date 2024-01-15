@@ -4,26 +4,30 @@ import Total from "./Total"
 
 const App = () => {
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const parts =[
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7 
+    },
+    {
+      name: 'State of a Component',
+      exercises: 14
+    }
+]
+
+console.log(parts[0]['name'])
 
   return (
     <div>
-      <Header course={course}/>
-      <br />
-
-      <Content numero={1} part={part1} exercises={exercises1}/>
-      <Total total={exercises1}/>
-
-      <Content numero={2} part={part2} exercises={exercises2}/>
-      <Total total={exercises1 + exercises2}/>
-
-      <Content numero={3} part={part3} exercises={exercises3}/>
-      <Total total={exercises1 + exercises2 + exercises3}/>
+        <Header course={course} />
+        <Content parts={parts[0]} /> 
+        <Content parts={parts[1]} />
+        <Content parts={parts[2]}/>
+        <Total parts={parts} /> 
     </div>
   )
 }

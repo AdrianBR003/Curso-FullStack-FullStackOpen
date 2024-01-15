@@ -1,7 +1,7 @@
-const Total = (prompt) =>{
-    console.log("Total" + prompt)
+const Total = (props) =>{
+    const  { parts } = props 
 return <>
-    <p>Valor total {prompt.total}</p>
+    <p>Valor total {parts[0]['exercises']+parts[1]['exercises']+parts[2]['exercises']}</p>
 </> 
 }
 
