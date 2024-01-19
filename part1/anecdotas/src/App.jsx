@@ -1,5 +1,7 @@
 import {useState} from 'react';
 import Random from './Random';
+import Puntuacion from './Puntuacion';
+import Mayor from './Mayor'
 
 const App = () => {
   const anecdotes = [
@@ -13,9 +15,19 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ];
 
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(0); //Usamos el useState para guardar el valor en el renderizado y que no se reinicie
+  const [ary, setAry] = useState(new Uint8Array(anecdotes.length))
 
- 
+  const guardar = (ary, selected) => {
+    console.log('guardar iniciado')
+    console.log('selected', selected)
+    console.log('Ary', ary)
+    const newArray = ary.slice(); 
+    newArray[selected] = Puntuacion(newArray[selected])
+    console.log('New Array[selected]', newArray[selected])
+    setAry(newArray); 
+    console.log('N Ary', ary)
+  }
 
   const setToValue = () => {
     const newValue = Random(0, anecdotes.length-1);
@@ -23,13 +35,19 @@ const App = () => {
     setSelected(newValue);
   };
 
+  //Array Puntuacion
+
 
   console.log('select', selected);
 
   return (
     <div>
-      <p>Anécdota: {anecdotes[selected]}</p>
+      <h1>Anecdota</h1>
+      <p>{anecdotes[selected]}</p>
+      <p>Tiene {ary[selected]} votos</p>
       <button onClick={()=>setToValue()}>Siguiente Anecdota</button>
+      <button onClick={()=> guardar(ary,selected)}>Votar</button>
+      <Mayor ary={ary} anecdotes={anecdotes}/>
     </div>
   );
 };
