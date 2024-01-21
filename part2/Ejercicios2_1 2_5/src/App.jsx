@@ -1,36 +1,80 @@
-import Course from "./components/Course"
+import Recorrer from "./components/Recorrer"
 
 const App = () => {
-  const course = {
-    id: 1,
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1,
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2,
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3,
-      },
-      {
-        name: 'Prueba añadir parte',
-        exercises: 20, 
-        id:4,
-      },
-    ],
-  }
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1,
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2,
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3,
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4,
+        },
+      ],
+    },
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1,
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2,
+        },
+      ],
+    },
+    {
+      name: 'Prueba',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1,
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2,
+        },
+      ],
+    },
+  ]
 
-  console.log("app course.name", course.name)
+  /* const nuevoA = courses.map((c) => { //Comprobacion de como se recorre
+    console.log("c", c); 
+    console.log("c.name", c.name);
+    // Puedes realizar operaciones adicionales si es necesario
 
-  return <Course {...course} /> //Usamos el operador '...' para pasar las propiedades del objeto
-}
+    // Devolver el nuevo valor para que se almacene en el nuevo array
+    return c;
+});
+*/
+
+
+return <Recorrer courses={courses} />
+
+} 
 
 export default App

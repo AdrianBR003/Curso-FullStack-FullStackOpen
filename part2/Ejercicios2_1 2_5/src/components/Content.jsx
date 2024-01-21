@@ -6,10 +6,11 @@ pasando un array de arrays de partes con el contenido*/
 
 const Content = ({ parts }) =>{
     console.log("Content parts", parts)
-    const titulos = parts.map(parts => parts.name)
-    console.log("titulos", titulos)
-    const ejercicios = parts.map(parts => parts.exercises)
-    console.log("ejercicios", ejercicios)
+    const ar = parts.flat()
+    const titulos = ar.map(ar => ar.name)
+    console.log("Console titulos:", titulos)
+    const ejercicios = ar.map(ar => ar.exercises)
+    console.log("Console ejercicios: ", ejercicios)
     return <>
     <Part titulos={titulos} ejercicios={ejercicios}/>
     <Total ejercicios={ejercicios.flat()}/>

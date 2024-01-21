@@ -1,5 +1,5 @@
 function Header({ titulo }) {
-    console.log(titulo)
+    console.log("Header titulo:", titulo)
 return <>
     <h1>{titulo}</h1>
 </>
