@@ -62,24 +62,6 @@ const App = () => {
     }
   };
 
-  /* const addPerson = (event) =>{
-      if(correccion()){
-        alert(`ER: el nombre: ${newName} , ya existe`)
-      }else{
-      console.log("correcion", correccion()) 
-      event.preventDefault()
-      const personObject={
-        name : newName,
-        number : newPhone,
-      }
-      setPersons(persons.concat(personObject))
-      setNewName('')
-      console.log('addPerson personObject: ', personObject)
-      console.log('addPerson persons: ', persons)
-      console.log('addperson number: ', number)
-    }
-  }  */
-
   return (
     <div>
       <FilterForm filterLetters={filterLetters} handleFilterChange={handleFilterChange} />
