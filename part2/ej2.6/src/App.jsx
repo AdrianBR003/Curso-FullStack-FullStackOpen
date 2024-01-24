@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Note from "./components/Note"
-import { number } from 'prop-types'
-
+import FilterForm from './components/FilterForm'
+import NumberList from './components/NumberList'
+import AddPersonForm from './components/addPerson'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -12,7 +12,7 @@ const App = () => {
   ])
   const [ newName, setNewName] = useState('')
   const [ newPhone, setNewPhone] = useState('')
-  const [showAll, setShowAll] = useState(true)
+  const [filterLetters, setFilterLetters] = useState(''); // Nuevo estado para las letras de filtrado
 
   const handlePersonChange = (event) =>{
     console.log("handleNameChange", event.target.value)
@@ -24,11 +24,14 @@ const App = () => {
     setNewPhone(event.target.value)
   }
 
-  const handleFilterChange = (event) =>{
-    console.log("handleShowChange", event.target.value)
-    setShowAll(event.target.value)
+  const handleFilterChange = (event) => {
+    console.log("handleShowChange", event.target.value);
+    setFilterLetters(event.target.value);
   }
 
+  const filteredPersons = persons.filter(person =>
+    person.name.toLowerCase().startsWith(filterLetters.toLowerCase())
+  );
 
   const correccion = () =>{
     let bool = true
@@ -42,7 +45,24 @@ const App = () => {
     return bool
   }
 
-  const addPerson = (event) =>{
+  const addPerson = (event) => {
+    event.preventDefault();
+  
+    if (correccion()) {
+      alert(`ER: el nombre: ${newName} , ya existe`);
+    } else {
+      const personObject = {
+        name: newName,
+        number: newPhone,
+      };
+  
+      setPersons([...persons, personObject]);
+      setNewName('');
+      setNewPhone('');
+    }
+  };
+
+  /* const addPerson = (event) =>{
       if(correccion()){
         alert(`ER: el nombre: ${newName} , ya existe`)
       }else{
@@ -58,34 +78,21 @@ const App = () => {
       console.log('addPerson persons: ', persons)
       console.log('addperson number: ', number)
     }
-  } 
-
-  const filter = (event) =>{
-    
-  }
-
-
+  }  */
 
   return (
     <div>
-      <form onSubmit={showAll}>
-        <h2>Phonebook</h2>
-        <div>Filter shown with: <input value={} onChange={}/></div>
-      </form>
-      <form onSubmit={addPerson}>
-        <h2>Add a New Contact</h2>
-        <div>name: <input value={newName} onChange={handlePersonChange}/></div>
-        <div>phone: <input value={newPhone} onChange={handlePhoneChange}/></div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      <ul>
-        {persons.map(n => <Note key={n.name} note={n} number={n.number}/>)}
-      </ul>
+      <FilterForm filterLetters={filterLetters} handleFilterChange={handleFilterChange} />
+      <AddPersonForm
+        newName={newName}
+        newPhone={newPhone}
+        handlePersonChange={handlePersonChange}
+        handlePhoneChange={handlePhoneChange}
+        addPerson={addPerson}
+      />
+      <NumberList persons={filteredPersons} />
     </div>
-  )
+  );
 }
 
 export default App

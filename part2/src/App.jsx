@@ -28,9 +28,7 @@ const App = (props) => {
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
 
-  const noteToShow = showAll
-  ? notes 
-  : notes.filter(note => note.important) // const result = condition ? val1 : val2 -> result será igual a val1 si se cumple la condition , sino será val2 
+  const noteToShow = showAll ? notes : notes.filter(note => note.important) // const result = condition ? val1 : val2 -> result será igual a val1 si se cumple la condition , sino será val2 
 
   const addNote = (event) => {
     event.preventDefault()
