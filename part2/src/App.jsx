@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
+import axios from 'axios'
 import Note from './components/Note'
 
 const notes = [
@@ -23,10 +24,22 @@ const notes = [
   },
 ]
 
-const App = (props) => {
-  const [notes, setNotes] = useState(props.notes)
+const App = () => {
+  const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
+
+  const hook = () => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/notes')
+      .then(response => {
+        console.log('promise fulfilled')
+        setNotes(response.data)
+      })
+  }
+  
+  useEffect(hook, [])
 
   const noteToShow = showAll ? notes : notes.filter(note => note.important) // const result = condition ? val1 : val2 -> result será igual a val1 si se cumple la condition , sino será val2 
 
