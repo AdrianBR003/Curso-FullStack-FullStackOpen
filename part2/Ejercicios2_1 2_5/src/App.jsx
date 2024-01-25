@@ -1,5 +1,7 @@
 import Recorrer from "./components/Recorrer"
 
+
+
 const App = () => {
   const courses = [
     {
@@ -46,7 +48,7 @@ const App = () => {
     },
     {
       name: 'Prueba',
-      id: 2,
+      id: 3,
       parts: [
         {
           name: 'Routing',

@@ -1,6 +1,6 @@
 import Course from "./Course"
 
-const Funcion = ({ courses }) => {
+const Recorrer = ({ courses }) => {
     console.log("Funcion courses:", courses)
     const courseComponents = courses.map((e) => {
       console.log("App e.name", e.name);
@@ -12,5 +12,5 @@ const Funcion = ({ courses }) => {
     return courseComponents;
   };
   
-  export default Funcion;
+  export default Recorrer;
   
